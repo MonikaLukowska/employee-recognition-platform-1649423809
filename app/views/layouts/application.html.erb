@@ -11,6 +11,23 @@
   </head>
 
   <body>
+    <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
+    <header>
+      <nav>
+        <h1>
+          <%= link_to 'Logo', root_path %>
+        </h1>
+        <ul>
+          <% if !employee_signed_in? %>
+            <li><%= link_to "Sign in", new_employee_session_path  %></li>
+            <li><%= link_to "Sign up", new_employee_registration_path  %></li>
+          <% else %>
+            <li><%= link_to "Sign out", destroy_employee_session_path, method: :delete  %></li>
+          <% end %>
+        </ul>
+      </nav>
+    </header>
     <%= yield %>
   </body>
 </html>
