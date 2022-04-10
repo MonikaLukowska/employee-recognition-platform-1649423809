@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_04_09_194744) do
+ActiveRecord::Schema.define(version: 2022_04_10_153440) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,10 +28,10 @@ ActiveRecord::Schema.define(version: 2022_04_09_194744) do
   end
 
   create_table "kudos", force: :cascade do |t|
-    t.string "title"
-    t.text "content"
-    t.bigint "receiver_id"
-    t.bigint "giver_id"
+    t.string "title", null: false
+    t.text "content", null: false
+    t.bigint "receiver_id", null: false
+    t.bigint "giver_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["giver_id"], name: "index_kudos_on_giver_id"
