@@ -11,22 +11,22 @@
     </div>
   <% end %>
 
-  <div class="field">
+  <div class="field mb-3">
     <%= form.label :title %>
-    <%= form.text_field :title %>
+    <%= form.text_field :title, class: 'form-control' %>
   </div>
 
-  <div class="field">
+  <div class="field mb-3">
     <%= form.label :content %>
-    <%= form.text_area :content %>
+    <%= form.text_area :content, class: 'form-control' %>
   </div>
 
-  <div class="field">
+  <div class="field mb-3">
     <%= form.label :receiver_id %>
-    <%= form.collection_select :receiver_id, Employee.order(:id), :id, :email  %>
+    <%= form.collection_select :receiver_id, Employee.order(:id), :id, :email, { include_blank: false }, { class: "form-select" }  %>
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit  class: 'btn btn-primary' %>
   </div>
 <% end %>
