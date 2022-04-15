@@ -13,3 +13,9 @@
  *= require_tree .
  *= require_self
  */
+
+// External libraries
+@import "bootstrap/scss/bootstrap";
+
+// SCSS partials
+//@import "components/index";
