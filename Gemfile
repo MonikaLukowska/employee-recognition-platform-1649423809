@@ -20,6 +20,8 @@ gem 'bootsnap', '>= 1.4.4', require: false
 
 gem 'devise'
 
+gem 'net-smtp'
+
 group :development, :test do
   # Debugging tool
   gem 'pry-rails'
@@ -29,7 +31,6 @@ group :development, :test do
   # Tests
   gem 'capybara'
   gem 'factory_bot_rails'
-  gem 'net-smtp'
   gem 'rspec-rails', '~> 5.0.0'
   gem 'selenium-webdriver'
   gem 'webdrivers'
