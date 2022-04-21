@@ -3,16 +3,20 @@
 module AdminUsers
   class SessionsController < Devise::SessionsController
     # before_action :configure_sign_in_params, only: [:create]
-    include Accessible
-    skip_before_action :check_user, only: :destroy
+
 
     # GET /resource/sign_in
 
     # POST /resource/sign_in
 
     # DELETE /resource/sign_out
-    def destroy
-      super
+    # def destroy
+    #   super
+    # end
+
+    def after_sign_in_path_for(resource)
+      super(resource)
+      admin_dashboard_path
     end
 
     def after_sign_out_path_for(resource)
