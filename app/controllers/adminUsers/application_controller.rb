@@ -1,3 +1,5 @@
-class AdminUsers::ApplicationController < ApplicationController
-  before_action :authenticate_admin_user!
+module AdminUsers
+  class ApplicationController < ApplicationController
+    before_action :authenticate_admin_user!
+  end
 end

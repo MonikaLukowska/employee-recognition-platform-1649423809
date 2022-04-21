@@ -20,9 +20,9 @@ gem 'bootsnap', '>= 1.4.4', require: false
 
 gem 'devise'
 
-gem 'net-smtp', require: false
-gem 'net-pop', require: false
 gem 'net-imap', require: false
+gem 'net-pop', require: false
+gem 'net-smtp', require: false
 
 group :development, :test do
   # Debugging tool
