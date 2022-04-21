@@ -7,8 +7,9 @@ Rails.application.routes.draw do
     get 'admin', to: 'admin_users/sessions#new'
   end
 
-  namespace :admin do
+  scope module: 'admin_users', path: 'admin' do
     get '/dashboard', to: '/admin_users/pages#dashboard', as: :dashboard
+    resources :kudos
   end
 
   
