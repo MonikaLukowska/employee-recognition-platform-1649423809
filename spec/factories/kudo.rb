@@ -3,6 +3,6 @@ FactoryBot.define do
     title { 'First kudo' }
     content { 'Nice work!' }
     association :giver, factory: :employee
-    receiver { giver }
+    association :receiver, factory: :employee
   end
 end
