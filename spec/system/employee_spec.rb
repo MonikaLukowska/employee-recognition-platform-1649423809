@@ -6,12 +6,14 @@ RSpec.describe 'Employee management', type: :system do
     visit('/')
   end
 
-  it 'enables signing up' do
+  let(:employee) { build(:employee) }
+
+  it 'can signing up' do
     expect do
       first(:link, 'Sign up').click
-      fill_in('Email', with: 'employee@example.com')
-      fill_in('Password', with: 'password')
-      fill_in('Password confirmation', with: 'password')
+      fill_in('Email', with: employee.email)
+      fill_in('Password', with: employee.password)
+      fill_in('Password confirmation', with: employee.password)
       click_button('Sign up')
     end.to change(Employee, :count).by(1)
     expect(page).to have_text('Welcome! You have signed up successfully.')
@@ -19,7 +21,7 @@ RSpec.describe 'Employee management', type: :system do
   end
 
   it 'enables signing in' do
-    employee = create(:employee)
+    employee.save
     fill_in('Email', with: employee.email)
     fill_in('Password', with: employee.password)
     click_button('Log in')
