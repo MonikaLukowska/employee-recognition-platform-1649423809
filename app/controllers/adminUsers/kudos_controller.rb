@@ -10,7 +10,7 @@ module AdminUsers
     # DELETE /kudos/1
     def destroy
       @kudo.destroy
-      redirect_to kudos_path, notice: 'Kudo was successfully destroyed.'
+      redirect_to admin_users_kudos_path, notice: 'Kudo was successfully destroyed.'
     end
 
     private
