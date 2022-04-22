@@ -1,5 +1,6 @@
 class KudosController < ApplicationController
   before_action :set_kudo, only: %i[show edit update destroy]
+  before_action :require_same_giver, only: %i[edit update destroy]
 
   # GET /kudos
   def index
@@ -51,5 +52,12 @@ class KudosController < ApplicationController
 
   def kudo_params
     params.require(:kudo).permit(:id, :title, :content, :receiver_id, :giver_id)
+  end
+
+  def require_same_giver
+    return unless current_employee != @kudo.giver
+
+    flash[:alert] = 'You can only edit and delete your own kudos'
+    redirect_to kudos_path
   end
 end

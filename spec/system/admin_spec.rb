@@ -13,6 +13,6 @@ RSpec.describe 'Admin management', type: :system do
     fill_in('Password', with: admin_user.password)
     click_button('Log in')
     expect(page).to have_text('Signed in successfully.')
-    expect(page).to have_current_path(admin_dashboard_path)
+    expect(page).to have_current_path(admin_users_dashboard_path)
   end
 end
