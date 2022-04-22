@@ -22,14 +22,12 @@
             </div>
             <div class="col">
               <ul class="nav justify-content-end ">
-                <% if admin_user_signed_in? %>
-                  <li><%= link_to "Sign out admin", destroy_admin_user_session_path, method: :delete, class: 'nav-link'  %></li>
-                <% elsif !admin_user_signed_in? && !employee_signed_in?  %>
+                <% if !employee_signed_in?  %>
                   <li><%= link_to "Sign in", new_employee_session_path, class: 'nav-link'  %></li>
                   <li><%= link_to "Sign up", new_employee_registration_path, class: 'nav-link'  %></li>
                 <% else %>
                   <li><%= link_to "Sign out", destroy_employee_session_path, method: :delete, class: 'nav-link'  %></li>
-                <% end %>
+                <% end%>
               </ul>
             </div> 
           </div>
