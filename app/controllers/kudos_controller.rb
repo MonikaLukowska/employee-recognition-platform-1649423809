@@ -1,6 +1,8 @@
 class KudosController < ApplicationController
   before_action :set_kudo, only: %i[show edit update destroy]
   before_action :require_same_giver, only: %i[edit update destroy]
+  after_action :decrease_employee_available_kudos, only: %i[create]
+  after_action :increase_employee_available_kudos, only: %i[destroy]
 
   # GET /kudos
   def index
@@ -59,5 +61,13 @@ class KudosController < ApplicationController
 
     flash[:alert] = 'You can only edit and delete your own kudos'
     redirect_to kudos_path
+  end
+
+  def decrease_employee_available_kudos
+    current_employee.update(number_of_available_kudos: current_employee.number_of_available_kudos - 1)
+  end
+
+  def increase_employee_available_kudos
+    current_employee.update(number_of_available_kudos: current_employee.number_of_available_kudos + 1)
   end
 end
