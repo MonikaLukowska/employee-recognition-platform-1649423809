@@ -8,7 +8,7 @@ module AdminUsers
     end
 
     # GET /employees/1/edit
-    def edit;end
+    def edit; end
 
     # PATCH/PUT /kudos/1
     def update
