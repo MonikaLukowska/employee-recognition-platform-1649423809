@@ -1,0 +1,37 @@
+
+<%= form_with(model: employee) do |form| %>
+  <% if employee.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(employee.errors.count, "error") %> prohibited this employee from being saved:</h2>
+
+      <ul>
+        <% employee.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field mb-3">
+    <%= form.label :email %>
+    <%= f.email_field :email, autofocus: true, autocomplete: "email" , class: 'form-control' %>
+  </div>
+
+  <div class="field">
+  <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
+  <%= f.password_field :password, autocomplete: "new-password", class: 'form-controll'  %>
+  <% if @minimum_password_length %>
+    <br />
+    <em><%= @minimum_password_length %> characters minimum</em>
+  <% end %>
+</div>
+
+<div class="field">
+<%= form.number_field :number_of_available_kudos, min:0, step: 1 %>
+</div>
+
+<div class="actions">
+  <%= f.submit class: 'btn btn-primary mt-2 mb-2' %>
+</div>
+
+<%= link_to "Back", admin_users_employee_path %>
