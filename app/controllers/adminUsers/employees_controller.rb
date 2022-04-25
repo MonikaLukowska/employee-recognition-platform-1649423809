@@ -4,7 +4,7 @@ module AdminUsers
 
     # GET /employees
     def index
-      @employees = Employee.all
+      @employees = Employee.order(:id)
     end
 
     # GET /employees/1/edit
@@ -12,7 +12,9 @@ module AdminUsers
 
     # PATCH/PUT /kudos/1
     def update
-      if @employee.update(employee_params)
+      if (employee_params[:password].blank? &&
+         @employee.update_without_password(employee_params.except(:password))) ||
+         @employee.update(employee_params)
         redirect_to admin_users_employees_path, notice: 'Employee was successfully updated.'
       else
         render :edit
@@ -32,7 +34,7 @@ module AdminUsers
     end
 
     def employee_params
-      params.require(:employee).permit(:id, :email, :number_of_available_kudos)
+      params.require(:employee).permit(:id, :email, :password, :number_of_available_kudos)
     end
   end
 end
