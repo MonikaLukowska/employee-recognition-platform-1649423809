@@ -22,7 +22,7 @@ RSpec.describe 'Admin kudos management', type: :system do
       visit('/admin/employees')
     end
 
-    it 'can edit employee' do
+    it 'can edit employee without password' do
       click_link('Edit')
       fill_in('Number of available kudos', with: 9)
       click_button('Update Employee')
@@ -31,6 +31,14 @@ RSpec.describe 'Admin kudos management', type: :system do
       within("li#employee_#{employee.id}") do
         expect(page).to have_content('Number of kudos: 9')
       end
+    end
+
+    it 'can edit employees password' do
+      click_link('Edit')
+      fill_in('Password', with: 'newpassword')
+      click_button('Update Employee')
+      expect(page).to have_content('Employee was successfully updated')
+      expect(page).to have_current_path(admin_users_employees_path)
     end
 
     it 'can remove employee' do
