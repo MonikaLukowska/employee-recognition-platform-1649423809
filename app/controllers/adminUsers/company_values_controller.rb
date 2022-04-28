@@ -4,7 +4,7 @@ module AdminUsers
 
     # GET /company_values
     def index
-      @company_value = CompanyValue.order(:id)
+      @company_values = CompanyValue.order(:id)
     end
 
     # GET /company_values/1/edit
@@ -12,8 +12,8 @@ module AdminUsers
 
     # PATCH/PUT /company_values/1
     def update
-      if @company_value.update(compnay_value_params)
-        redirect_to admin_users_compnay_values_path, notice: 'Company Value was successfully updated.'
+      if @company_value.update(company_value_params)
+        redirect_to admin_users_company_values_path, notice: 'Company Value was successfully updated.'
       else
         render :edit
       end
@@ -27,11 +27,11 @@ module AdminUsers
 
     private
 
-    def set_employee
+    def set_company_value
       @company_value = CompanyValue.find(params[:id])
     end
 
-    def employee_params
+    def company_value_params
       params.require(:company_value).permit(:id, :title)
     end
   end
