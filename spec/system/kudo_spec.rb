@@ -12,7 +12,7 @@ RSpec.describe 'Kudo management', type: :system do
   context 'when creating new kudo' do
     let(:kudo) { build(:kudo) }
 
-    it 'can give a kudo' do
+    it 'enables to give a kudo' do
       expect do
         click_link('New Kudo')
         fill_in('Title', with: kudo.title)
@@ -24,7 +24,7 @@ RSpec.describe 'Kudo management', type: :system do
       expect(page).to have_text('Kudo was successfully created')
     end
 
-    it 'cannot create a kudo without title' do
+    it 'prevents from creating a kudo without title' do
       expect do
         click_link('New Kudo')
         fill_in('Title', with: '')
@@ -37,7 +37,7 @@ RSpec.describe 'Kudo management', type: :system do
       end
     end
 
-    it 'cannot create a kudo without content field' do
+    it 'prevents from creating a kudo without content' do
       expect do
         click_link('New Kudo')
         fill_in('Title', with: kudo.title)
@@ -52,10 +52,9 @@ RSpec.describe 'Kudo management', type: :system do
   end
 
   context 'when kudo given by logged in employee exists' do
-    let(:kudo) { create(:kudo, giver: employee) }
+    let!(:kudo) { create(:kudo, giver: employee) }
 
     before do
-      kudo
       visit kudos_path
     end
 
@@ -64,7 +63,7 @@ RSpec.describe 'Kudo management', type: :system do
       expect(page).to have_text(kudo.content)
     end
 
-    it 'can edit kudo' do
+    it 'enables to edit the kudo' do
       click_link('Edit')
       fill_in('Title', with: 'Edited title')
       click_button('Update Kudo')
@@ -72,7 +71,7 @@ RSpec.describe 'Kudo management', type: :system do
       expect(page).to have_text('Kudo was successfully updated')
     end
 
-    it 'can delete kudo' do
+    it 'enables to destroy the kudo' do
       visit('/kudos')
       click_link('Destroy')
       page.accept_alert
@@ -82,10 +81,9 @@ RSpec.describe 'Kudo management', type: :system do
   end
 
   context 'when kudo from other employee exists' do
-    let(:kudo) { create(:kudo) }
+    let!(:kudo) { create(:kudo) }
 
     before do
-      kudo
       visit kudos_path
     end
 
@@ -109,7 +107,7 @@ RSpec.describe 'Kudo management', type: :system do
       visit root_path
     end
 
-    it 'can see number of available kudos' do
+    it 'shows number of available kudos' do
       expect(page).to have_content('Available kudos:1')
     end
 
@@ -131,7 +129,7 @@ RSpec.describe 'Kudo management', type: :system do
       visit root_path
     end
 
-    it 'cannot give a kudo' do
+    it 'prevents from giving a kudo' do
       expect do
         click_link('New Kudo')
         fill_in('Title', with: kudo.title)
