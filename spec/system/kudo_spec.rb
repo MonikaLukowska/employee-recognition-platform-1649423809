@@ -85,13 +85,13 @@ RSpec.describe 'Kudo management', type: :system do
     end
 
     it 'prevents from editing' do
-      within("tr#kudo_#{kudo.id}") do
+      within("li#kudo_#{kudo.id}") do
         expect(page).to have_no_link('Edit')
       end
     end
 
     it 'prevents from destoying' do
-      within("tr#kudo_#{kudo.id}") do
+      within("li#kudo_#{kudo.id}") do
         expect(page).to have_no_link('Destroy')
       end
     end

@@ -11,8 +11,10 @@
           <p class="card-text"><span class="font-weight-bold">Content: </span><%= kudo.content %></p>
           <p class="card-text"><span class="font-weight-bold">Receiver: </span><%= kudo.receiver.email %></p>
           <p class="card-text"><span class="font-weight-bold">Giver: </span><%= kudo.giver.email %></p>
-          <%= link_to 'Edit', edit_kudo_path(kudo) %> |
-          <%= link_to 'Destroy', kudo, method: :delete, data: { confirm: 'Are you sure?' } %> 
+          <% if kudo.giver == current_employee %>
+            <%= link_to 'Edit', edit_kudo_path(kudo) %> |
+            <%= link_to 'Destroy', kudo, method: :delete, data: { confirm: 'Are you sure?' } %> 
+          <% end %>
         </div>
       </li>
     <% end %>
