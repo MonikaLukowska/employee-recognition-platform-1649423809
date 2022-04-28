@@ -6,12 +6,12 @@ RSpec.describe 'Admin kudos management', type: :system do
 
   before do
     driven_by(:selenium_chrome_headless)
-    login_admin admin_user
+    login_admin(admin_user)
     visit('/admin/dashboard')
   end
 
   it 'shows employees list' do
-    click_link('Employees list')
+    click_link('Employees')
     expect(page).to have_current_path(admin_users_employees_path)
     expect(page).to have_css("#employee_#{employee.id}")
   end

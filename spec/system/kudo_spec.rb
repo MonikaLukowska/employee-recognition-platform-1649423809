@@ -5,7 +5,7 @@ RSpec.describe 'Kudo management', type: :system do
 
   before do
     driven_by(:selenium_chrome_headless)
-    login employee
+    login_employee(employee)
     visit root_path
   end
 
@@ -17,7 +17,6 @@ RSpec.describe 'Kudo management', type: :system do
         click_link('New Kudo')
         fill_in('Title', with: kudo.title)
         fill_in('Content', with: kudo.content)
-        select(kudo.receiver.id, from: 'kudo[receiver_id]')
         click_button('Create Kudo')
       end.to change(Kudo, :count).by(1)
       expect(page).to have_current_path(kudos_path)
@@ -29,7 +28,6 @@ RSpec.describe 'Kudo management', type: :system do
         click_link('New Kudo')
         fill_in('Title', with: '')
         fill_in('Content', with: kudo.title)
-        select(kudo.receiver.id, from: 'kudo[receiver_id]')
         click_button('Create Kudo')
       end.to change(Kudo, :count).by(0)
       within('div#error_explanation') do
@@ -42,7 +40,6 @@ RSpec.describe 'Kudo management', type: :system do
         click_link('New Kudo')
         fill_in('Title', with: kudo.title)
         fill_in('Content', with: '')
-        select(kudo.receiver.id, from: 'kudo[receiver_id]')
         click_button('Create Kudo')
       end.to change(Kudo, :count).by(0)
       within('div#error_explanation') do
@@ -115,7 +112,6 @@ RSpec.describe 'Kudo management', type: :system do
       click_link('New Kudo')
       fill_in('Title', with: kudo.title)
       fill_in('Content', with: kudo.content)
-      select(kudo.receiver.id, from: 'kudo[receiver_id]')
       click_button('Create Kudo')
       expect(page).to have_content('Available kudos:9')
     end
@@ -134,7 +130,6 @@ RSpec.describe 'Kudo management', type: :system do
         click_link('New Kudo')
         fill_in('Title', with: kudo.title)
         fill_in('Content', with: kudo.content)
-        select(kudo.receiver.id, from: 'kudo[receiver_id]')
         click_button('Create Kudo')
       end.to change(Kudo, :count).by(0)
       within('div#error_explanation') do
