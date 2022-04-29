@@ -17,7 +17,8 @@ Rails.application.routes.draw do
   namespace :admin_users, path: 'admin' do
     get '/dashboard', to: '/admin_users/pages#dashboard', as: :dashboard
     resources :kudos, only: [:index, :destroy]
-    resources :employees, only: [:index, :edit, :update, :destroy]
+    resources :employees, except: [:show]
+    resources :company_values, except: [:show]
     
   end
 
