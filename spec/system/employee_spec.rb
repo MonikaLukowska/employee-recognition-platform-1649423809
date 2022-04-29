@@ -8,7 +8,7 @@ RSpec.describe 'Employee management', type: :system do
 
   let(:employee) { build(:employee) }
 
-  it 'enables signing up' do
+  it 'can signing up' do
     expect do
       first(:link, 'Sign up').click
       fill_in('Email', with: employee.email)

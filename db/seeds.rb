@@ -11,10 +11,7 @@
 end
 
 5.times do 
-  Kudo.create(title: "dummy kudo", content: "some content", receiver:Employee.find(1), giver:Employee.find(1))
+  Kudo.create(title: "dummy kudo", content: "some content", receiver_id:rand(1..6), giver_id:rand(1..6))
 end
 
 AdminUser.create(email:"admin@example.com", password:'password')
-
-['Honesty', 'Ownership', 'Accountability', 'Passion'].each { |val| CompanyValue.create(title: val )}
-
