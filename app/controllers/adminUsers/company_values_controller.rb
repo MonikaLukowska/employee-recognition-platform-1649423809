@@ -1,34 +1,48 @@
 module AdminUsers
   class CompanyValuesController < AdminUsers::ApplicationController
-    before_action :set_company_value, only: %i[edit update destroy]
-
-    # GET /company_values
     def index
-      @company_values = CompanyValue.order(:id)
+      render :index, locals: { company_values: CompanyValue.order(title: :asc) }
     end
 
-    # GET /company_values/1/edit
-    def edit; end
+    def edit
+      render :edit, locals: { company_value: company_value }
+    end
 
-    # PATCH/PUT /company_values/1
-    def update
-      if @company_value.update(company_value_params)
-        redirect_to admin_users_company_values_path, notice: 'Company Value was successfully updated.'
+    def show
+      render :show, locals: { company_value: company_value }
+    end
+
+    def new
+      render :new, locals: { company_value: CompanyValue.new }
+    end
+
+    def create
+      record = CompanyValue.new(company_value_params)
+
+      if record.save
+        redirect_to admin_users_company_value_path(record), notice: 'Company Value was successfully created'
       else
-        render :edit
+        render :new, locals: { company_value: record }
       end
     end
 
-    # DELETE /company_values/1
+    def update
+      if company_value.update(company_value_params)
+        redirect_to admin_users_company_values_path, notice: 'Company Value was successfully updated.'
+      else
+        render :edit, locals: { company_value: company_value }
+      end
+    end
+
     def destroy
-      @company_value.destroy
+      company_value.destroy
       redirect_to admin_users_company_values_path, notice: 'Company Value was successfully destroyed.'
     end
 
     private
 
-    def set_company_value
-      @company_value = CompanyValue.find(params[:id])
+    def company_value
+      @company_value ||= CompanyValue.find(params[:id])
     end
 
     def company_value_params

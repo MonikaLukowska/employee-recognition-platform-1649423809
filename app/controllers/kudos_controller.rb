@@ -1,55 +1,51 @@
 class KudosController < ApplicationController
-  before_action :set_kudo, only: %i[show edit update destroy]
-  before_action :require_same_giver, only: %i[edit update destroy]
-  after_action :decrease_employee_available_kudos, only: %i[create]
-  after_action :increase_employee_available_kudos, only: %i[destroy]
-
-  # GET /kudos
   def index
-    @kudos = Kudo.all.includes(:receiver, :giver)
+    render :index, locals: { kudos: Kudo.all.includes(:receiver, :giver) }
   end
 
-  # GET /kudos/1
-  def show; end
+  def show
+    render :show, locals: { kudo: kudo }
+  end
 
-  # GET /kudos/new
   def new
-    @kudo = Kudo.new
+    render :new, locals: { kudo: Kudo.new }
   end
 
-  # GET /kudos/1/edit
-  def edit; end
+  def edit
+    render :edit, locals: { kudo: kudo }
+  end
 
-  # POST /kudos
   def create
-    @kudo = Kudo.new(kudo_params)
-    @kudo.giver_id = current_employee.id
-    if @kudo.save
+    record = Kudo.new(kudo_params)
+    record.giver = current_employee
+
+    if record.save
+      decrease_giver_available_kudos
       redirect_to kudos_path, notice: 'Kudo was successfully created.'
     else
-      render :new
+      render :new, locals: { kudo: record }
     end
   end
 
-  # PATCH/PUT /kudos/1
   def update
-    if @kudo.update(kudo_params)
-      redirect_to @kudo, notice: 'Kudo was successfully updated.'
+    if kudo.update(kudo_params)
+      redirect_to kudo, notice: 'Kudo was successfully updated.'
     else
-      render :edit
+      render :edit, locals: { kudo: kudo }
     end
   end
 
-  # DELETE /kudos/1
   def destroy
-    @kudo.destroy
+    require_same_giver
+    kudo.destroy
+    increase_giver_available_kudos
     redirect_to kudos_path, notice: 'Kudo was successfully destroyed.'
   end
 
   private
 
-  def set_kudo
-    @kudo = Kudo.find(params[:id])
+  def kudo
+    @kudo ||= Kudo.find(params[:id])
   end
 
   def kudo_params
@@ -57,17 +53,17 @@ class KudosController < ApplicationController
   end
 
   def require_same_giver
-    return unless current_employee != @kudo.giver
+    return unless current_employee != kudo.giver
 
     flash[:alert] = 'You can only edit and delete your own kudos'
     redirect_to kudos_path
   end
 
-  def decrease_employee_available_kudos
-    current_employee.update(number_of_available_kudos: current_employee.number_of_available_kudos - 1)
+  def decrease_giver_available_kudos
+    current_employee.decrement(:number_of_available_kudos, 1).save
   end
 
-  def increase_employee_available_kudos
-    current_employee.update(number_of_available_kudos: current_employee.number_of_available_kudos + 1)
+  def increase_giver_available_kudos
+    kudo.giver.increment(:number_of_available_kudos, 1).save
   end
 end

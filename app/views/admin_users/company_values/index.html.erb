@@ -1,8 +1,7 @@
-<h1>Company values</h1>
-
+<h1 class="mb-5">Company values</h1>
 <ul>
-  <% @company_values.each do |company_value| %>
-    <li class="card" id="company_value_<%= company_value.id %>">
+  <% company_values.each do |company_value| %>
+    <li class="card mb-2" id="company_value_<%= company_value.id %>">
       <div class="card-header">
         Company value <%= company_value.id %>
       </div>
@@ -14,3 +13,4 @@
     </li>
   <% end %>
 </ul>
+<%= link_to 'New Company value', new_admin_users_company_value_path(company_values), class: 'btn btn-primary mb-5 mt-5' %>
