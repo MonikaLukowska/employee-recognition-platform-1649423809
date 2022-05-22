@@ -18,7 +18,7 @@ Rails.application.routes.draw do
     get '/dashboard', to: '/admin_users/pages#dashboard', as: :dashboard
     resources :kudos, only: [:index, :destroy]
     resources :employees, except: [:show]
-    resources :company_values, except: [:show]
+    resources :company_values
     
   end
 
