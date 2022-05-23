@@ -5,8 +5,7 @@ Rails.application.routes.draw do
 
   root to: 'kudos#index'
 
-  devise_for :employees, path: '', controllers: {sessions: 'employees/sessions',passwords: 'employees/passwords',
-    registrations: 'employees/registrations'}
+  devise_for :employees, path: '', controllers: {sessions: 'employees/sessions'}
 
   devise_for :admin_users, path: 'admin', controllers: {sessions: 'admin_users/sessions', passwords: 'admin_users/passwords'}
 
