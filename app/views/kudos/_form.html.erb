@@ -19,7 +19,7 @@
   </div>
   <div class="field mb-3">
     <%= form.label :receiver_id %>
-    <%= form.collection_select :receiver_id, Employee.order(:id), :id, :email, { include_blank: false }, { class: "form-select" }  %>
+    <%= form.collection_select :receiver_id, Employee.where.not(id: current_employee.id).order(:id), :id, :email, { include_blank: false }, { class: "form-select" }  %>
   </div>
   <div class="actions">
     <%= form.submit  class: 'btn btn-primary mt-2 mb-2' %>
