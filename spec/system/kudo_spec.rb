@@ -2,6 +2,7 @@ require 'rails_helper'
 
 RSpec.describe 'Kudo management', type: :system do
   let(:employee) { create(:employee) }
+  let!(:receiver) { create(:employee) }
 
   before do
     driven_by(:selenium_chrome_headless)
@@ -105,7 +106,7 @@ RSpec.describe 'Kudo management', type: :system do
     end
 
     it 'shows number of available kudos' do
-      expect(page).to have_content('Available kudos:1')
+      expect(page).to have_content('Available kudos:10')
     end
 
     it 'decreases number after giving new kudo' do
