@@ -10,11 +10,11 @@
   Employee.create(email: "employee#{i}@gmail.com", password: "psswd123")
 end
 
-5.times do 
-  Kudo.create(title: "dummy kudo", content: "some content", receiver:Employee.find(1), giver:Employee.find(1))
-end
-
 AdminUser.create(email:"admin@example.com", password:'password')
 
 ['Honesty', 'Ownership', 'Accountability', 'Passion'].each { |val| CompanyValue.create(title: val )}
+
+5.times do |i|
+  Kudo.create(title: "Kudo #{i} title", content: "Kudo content", receiver:Employee.find(1), giver:Employee.find(2), company_value:CompanyValue.find(rand(4)))
+end
 
