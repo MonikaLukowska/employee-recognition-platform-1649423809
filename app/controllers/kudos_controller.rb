@@ -1,6 +1,7 @@
 class KudosController < ApplicationController
+  before_action :authenticate_employee!
   def index
-    render :index, locals: { kudos: Kudo.all.includes(:receiver, :giver) }
+    render :index, locals: { kudos: Kudo.includes(:receiver, :giver) }
   end
 
   def show
