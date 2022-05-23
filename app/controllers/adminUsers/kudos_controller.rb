@@ -1,7 +1,7 @@
 module AdminUsers
   class KudosController < AdminUsers::ApplicationController
     def index
-      render :index, locals: { kudos: Kudo.includes(:receiver, :giver) }
+      render :index, locals: { kudos: Kudo.includes(:receiver, :giver, :company_value) }
     end
 
     def destroy
@@ -17,7 +17,7 @@ module AdminUsers
     end
 
     def kudo_params
-      params.require(:kudo).permit(:id, :title, :content, :receiver_id, :giver_id)
+      params.require(:kudo).permit(:id, :title, :content, :receiver_id, :giver_id, :company_value_id)
     end
 
     def increase_giver_available_kudos
