@@ -1,7 +1,6 @@
 <h1>Employees list</h1>
-
 <ul>
-  <% @employees.each do |employee| %>
+  <% employees.each do |employee| %>
     <li class="card" id="employee_<%= employee.id %>">
       <div class="card-header">
         Employee <%= employee.id %>
@@ -15,4 +14,3 @@
     </li>
   <% end %>
 </ul>
- 

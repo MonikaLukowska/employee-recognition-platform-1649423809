@@ -1,0 +1,19 @@
+<%= form_with(model: [:admin_users, company_value]) do |form| %>
+  <% if company_value.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(company_value.errors.count, "error") %> prohibited this company value from being saved:</h2>
+      <ul>
+        <% company_value.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="field mb-3">
+    <%= form.label :title %>
+    <%= form.text_field :title, class: 'form-control' %>
+  </div>
+  <div class="actions">
+    <%= form.submit  class: 'btn btn-primary mt-2 mb-2' %>
+  </div>
+<% end %>

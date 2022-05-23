@@ -5,8 +5,7 @@ Rails.application.routes.draw do
 
   root to: 'kudos#index'
 
-  devise_for :employees, path: '', controllers: {sessions: 'employees/sessions',passwords: 'employees/passwords',
-    registrations: 'employees/registrations'}
+  devise_for :employees, path: '', controllers: {sessions: 'employees/sessions'}
 
   devise_for :admin_users, path: 'admin', controllers: {sessions: 'admin_users/sessions', passwords: 'admin_users/passwords'}
 
@@ -17,7 +16,8 @@ Rails.application.routes.draw do
   namespace :admin_users, path: 'admin' do
     get '/dashboard', to: '/admin_users/pages#dashboard', as: :dashboard
     resources :kudos, only: [:index, :destroy]
-    resources :employees, only: [:index, :edit, :update, :destroy]
+    resources :employees, except: [:show]
+    resources :company_values
     
   end
 
