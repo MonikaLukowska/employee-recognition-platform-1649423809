@@ -18,6 +18,7 @@ Rails.application.routes.draw do
     resources :kudos, only: [:index, :destroy]
     resources :employees, except: [:show]
     resources :company_values
+    resources :rewards
     
   end
 
