@@ -1,5 +1,5 @@
 <h1 class="mb-5">Company values</h1>
-<ul>
+<ul class="px-0">
   <% company_values.each do |company_value| %>
     <li class="card mb-2" id="company_value_<%= company_value.id %>">
       <div class="card-header">
@@ -7,8 +7,8 @@
       </div>
       <div class="card-body">
         <p class="card-text"><span class="font-weight-bold">Title: </span><%= company_value.title %></p>
-        <td><%= link_to 'Edit', edit_admin_users_company_value_path(company_value) %></td>
-        <td><%= link_to 'Remove', admin_users_company_value_path(company_value), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Edit', edit_admin_users_company_value_path(company_value), class: 'btn btn-warning' %></td>
+        <td><%= link_to 'Remove', admin_users_company_value_path(company_value), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %></td>
       </div>
     </li>
   <% end %>

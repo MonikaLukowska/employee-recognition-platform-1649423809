@@ -1,5 +1,5 @@
 <h1>Employees list</h1>
-<ul>
+<ul class="px-0">
   <% employees.each do |employee| %>
     <li class="card" id="employee_<%= employee.id %>">
       <div class="card-header">
@@ -8,8 +8,8 @@
       <div class="card-body">
         <p class="card-text"><span class="font-weight-bold">Email: </span><%= employee.email %></p>
         <p class="card-text"><span class="font-weight-bold">Number of kudos: </span><%= employee.number_of_available_kudos %></p>
-        <td><%= link_to 'Edit', edit_admin_users_employee_path(employee) %></td>
-        <td><%= link_to 'Remove', admin_users_employee_path(employee), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Edit', edit_admin_users_employee_path(employee), class: 'btn btn-warning' %></td>
+        <td><%= link_to 'Remove', admin_users_employee_path(employee), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %></td>
       </div>
     </li>
   <% end %>
