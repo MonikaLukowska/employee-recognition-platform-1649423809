@@ -25,7 +25,7 @@ RSpec.describe 'Admin company values management', type: :system do
       click_link('Edit')
       fill_in('Title', with: 'Updated title')
       click_button('Update Company value')
-      expect(page).to have_content('Company Value was successfully updated')
+      expect(page).to have_content('Company value was successfully updated')
       expect(page).to have_current_path(admin_users_company_values_path)
       within("li#company_value_#{company_value.id}") do
         expect(page).to have_content('Updated title')
@@ -35,7 +35,7 @@ RSpec.describe 'Admin company values management', type: :system do
     it 'enables removing a company value' do
       click_link('Remove')
       page.accept_alert
-      expect(page).to have_content('Company Value was successfully destroyed')
+      expect(page).to have_content('Company value was successfully destroyed')
       expect(page).to have_current_path(admin_users_company_values_path)
       expect(CompanyValue.count).to eq 0
     end
@@ -45,7 +45,7 @@ RSpec.describe 'Admin company values management', type: :system do
       fill_in('Title', with: 'New Company Value')
       click_button('Create Company value')
       expect(CompanyValue.count).to eq 2
-      expect(page).to have_content('Company Value was successfully created')
+      expect(page).to have_content('Company value was successfully created')
       expect(page).to have_content('New Company Value')
     end
 
