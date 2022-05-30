@@ -20,7 +20,7 @@ module AdminUsers
       record = CompanyValue.new(company_value_params)
 
       if record.save
-        redirect_to admin_users_company_value_path(record), notice: 'Company Value was successfully created'
+        redirect_to admin_users_company_value_path(record), notice: 'Company value was successfully created'
       else
         render :new, locals: { company_value: record }
       end
@@ -28,15 +28,19 @@ module AdminUsers
 
     def update
       if company_value.update(company_value_params)
-        redirect_to admin_users_company_values_path, notice: 'Company Value was successfully updated.'
+        redirect_to admin_users_company_values_path, notice: 'Company value was successfully updated.'
       else
         render :edit, locals: { company_value: company_value }
       end
     end
 
     def destroy
-      company_value.destroy
-      redirect_to admin_users_company_values_path, notice: 'Company Value was successfully destroyed.'
+      if company_value.destroy
+        redirect_to admin_users_company_values_path, notice: 'Company value was successfully destroyed.'
+      else
+        redirect_to admin_users_company_values_path,
+        notice: 'Company value has associated kudo and cannot be destroyed.'
+      end
     end
 
     private
