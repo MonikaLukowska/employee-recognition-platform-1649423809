@@ -1,7 +1,7 @@
 class KudosController < ApplicationController
   before_action :authenticate_employee!
   def index
-    render :index, locals: { kudos: Kudo.includes(:receiver, :giver) }
+    render :index, locals: { kudos: Kudo.includes(:receiver, :giver, :company_value) }
   end
 
   def show
@@ -50,7 +50,7 @@ class KudosController < ApplicationController
   end
 
   def kudo_params
-    params.require(:kudo).permit(:id, :title, :content, :receiver_id, :giver_id)
+    params.require(:kudo).permit(:id, :title, :content, :receiver_id, :giver_id, :company_value_id)
   end
 
   def require_same_giver

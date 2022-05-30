@@ -4,5 +4,6 @@ FactoryBot.define do
     content { 'Nice work!' }
     association :giver, factory: :employee
     association :receiver, factory: :employee
+    association :company_value
   end
 end

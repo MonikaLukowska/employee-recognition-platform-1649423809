@@ -3,6 +3,7 @@ require 'rails_helper'
 RSpec.describe 'Kudo management', type: :system do
   let(:employee) { create(:employee) }
   let!(:receiver) { create(:employee) }
+  let!(:company_value) { create(:company_value) }
 
   before do
     driven_by(:selenium_chrome_headless)
@@ -59,6 +60,7 @@ RSpec.describe 'Kudo management', type: :system do
     it 'shows kudo' do
       expect(page).to have_text(kudo.title)
       expect(page).to have_text(kudo.content)
+      expect(page).to have_text(kudo.company_value.title)
     end
 
     it 'enables to edit the kudo' do
@@ -75,6 +77,7 @@ RSpec.describe 'Kudo management', type: :system do
       page.accept_alert
       expect(page).to have_current_path(kudos_path)
       expect(page).to have_text('Kudo was successfully destroyed')
+      expect(Kudo.count).to eq 0
     end
   end
 
