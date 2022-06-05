@@ -1,0 +1,14 @@
+<h1>Rewards</h1>
+<ul class="px-0 mb-2 mt-3">
+  <% rewards.each do |reward| %>
+    <li class="card mb-3" test_id="reward_<%= reward.id %>">
+      <div class="card-header">
+       <%= reward.title %>
+      </div>
+      <div class="card-body">
+        <p class="card-text"><span class="font-weight-bold">Price: </span><%= reward.price %></p>
+        <%= link_to 'Show', reward_path(reward), class: 'btn btn-warning' %>
+      </div>
+    </li>
+  <% end %>
+</ul>

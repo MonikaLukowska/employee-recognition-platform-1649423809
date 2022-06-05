@@ -1,0 +1,10 @@
+<div class="card mt-5 mb-5">
+ <div class="card-header">
+    <%= reward.title %>
+  </div>
+  <div class="card-body">
+    <p class="card-text"><span class="font-weight-bold">Description: </span><%= reward.description %></p>
+    <p class="card-text"><span class="font-weight-bold">Price: </span><%= reward.price %></p>
+  </div>
+</div>
+<%= link_to 'Back', rewards_path, class: 'btn btn-light mb-5' %>

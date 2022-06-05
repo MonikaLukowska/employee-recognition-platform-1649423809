@@ -2,6 +2,7 @@
 
 Rails.application.routes.draw do
   resources :kudos
+  resources :rewards, only: [:index, :show]
 
   root to: 'kudos#index'
 
