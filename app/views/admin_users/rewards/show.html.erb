@@ -1,0 +1,11 @@
+<div class="card" test_id="reward_<%= reward.id %>">  
+  <h2 class="card-header">Reward <%= reward.id %></h2>
+  <div class="card-body">
+    <p class="card-text"><span class="font-weight-bold">Title: </span><%= reward.title %></p>
+    <p class="card-text"><span class="font-weight-bold">Description: </span><%= reward.description %></p>
+    <p class="card-text"><span class="font-weight-bold">Price: </span><%= reward.price %></p>
+    <td><%= link_to 'Edit', edit_admin_users_reward_path(reward), class: 'btn btn-warning' %></td>
+    <td><%= link_to 'Remove', admin_users_reward_path(reward), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %></td>
+  </div>
+</div>
+<%= link_to 'Back', admin_users_rewards_path, class: 'btn btn-light mt-5 mb-5'  %>

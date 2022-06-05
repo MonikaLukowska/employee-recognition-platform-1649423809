@@ -11,6 +11,7 @@ RSpec.describe 'Admin company values management', type: :system do
   end
 
   it 'shows company values list' do
+    click_link('Pages')
     click_link('Company values')
     expect(page).to have_current_path(admin_users_company_values_path)
     expect(page).to have_content(company_value.title)

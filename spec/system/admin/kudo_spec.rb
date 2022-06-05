@@ -11,6 +11,7 @@ RSpec.describe 'Admin kudos management', type: :system do
   end
 
   it 'enables destroying the kudo' do
+    click_link('Pages')
     click_link('Kudos')
     click_link('Destroy')
     page.accept_alert

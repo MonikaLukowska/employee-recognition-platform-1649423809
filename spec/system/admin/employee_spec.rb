@@ -11,6 +11,7 @@ RSpec.describe 'Admin kudos management', type: :system do
   end
 
   it 'shows employees list' do
+    click_link('Pages')
     click_link('Employees')
     expect(page).to have_current_path(admin_users_employees_path)
     expect(page).to have_css("#employee_#{employee.id}")

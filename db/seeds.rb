@@ -15,6 +15,10 @@ AdminUser.create(email:"admin@example.com", password:'password')
 ['Honesty', 'Ownership', 'Accountability', 'Passion'].each { |val| CompanyValue.create(title: val )}
 
 5.times do |i|
-  Kudo.create(title: "Kudo #{i} title", content: "Kudo content", receiver:Employee.first, giver:Employee.last company_value:CompanyValue.sample)
+  Kudo.create(title: "Kudo #{i} title", content: "Kudo content", receiver:Employee.first, giver:Employee.last, company_value: CompanyValue.sample)
+end
+
+5.times do |i|
+  Reward.create(title: "Title #{i}", description: 'Reward description', price: i )
 end
 

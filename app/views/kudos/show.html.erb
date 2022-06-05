@@ -19,7 +19,7 @@
     <strong>Giver:</strong>
     <%= @kudo.giver.email %>
   </p>
-  <%= link_to 'Edit', edit_kudo_path(kudo) %> |
-  <%= link_to 'Back', kudos_path %>
+  <%= link_to 'Edit', edit_kudo_path(kudo), class: 'btn btn-warning mt-5 mb-5'  %> |
+  <%= link_to 'Back', kudos_path , class: 'btn btn-light mt-5 mb-5' %>
 </div>
 

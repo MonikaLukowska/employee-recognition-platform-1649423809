@@ -19,13 +19,21 @@
                 <%= link_to 'Logo', root_path, class: 'navbar-brand' %>
               </h1>
             </div>
-            <div class="col">
-              <ul class="nav md-justify-content-end ">
+            <div class="col" id="navbarSupportedContent">
+              <ul class="navbar-nav no-wrap flex justify-content-end">
                 <% if admin_user_signed_in?  %>
-                  <li><%= link_to "Kudos", admin_users_kudos_path, class: 'nav-link'  %></li>
-                  <li><%= link_to "Employees", admin_users_employees_path, class: 'nav-link'  %></li>
-                  <li><%= link_to "Company values", admin_users_company_values_path, class: 'nav-link'  %></li>
-                  <li><%= link_to "Sign out", destroy_admin_user_session_path, method: :delete, class: 'nav-link'  %></li>
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Pages
+                  </a>
+                  <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <li><%= link_to "Kudos", admin_users_kudos_path, class: 'nav-link'  %></li>
+                    <li><%= link_to "Employees", admin_users_employees_path, class: 'nav-link'  %></li>
+                    <li><%= link_to "Company values", admin_users_company_values_path, class: 'nav-link'  %></li>
+                    <li><%= link_to "Rewards", admin_users_rewards_path, class: 'nav-link'  %></li>
+                  </ul>
+                </li>
+                <li><%= link_to "Sign out", destroy_admin_user_session_path, method: :delete, class: 'btn btn-outline-primary'  %></li>
                 <% end %>
               </ul>
             </div> 
