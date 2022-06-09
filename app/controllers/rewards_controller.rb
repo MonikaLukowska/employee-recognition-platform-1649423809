@@ -13,8 +13,4 @@ class RewardsController < ApplicationController
   def reward
     @reward ||= Reward.find(params[:id])
   end
-
-  def reward_params
-    params.require(:reward).permit(:title, :description, :price, :id)
-  end
 end
