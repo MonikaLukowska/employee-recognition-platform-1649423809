@@ -2,7 +2,6 @@ require 'rails_helper'
 
 RSpec.describe 'Employee management', type: :system do
   before do
-    driven_by(:selenium_chrome_headless)
     visit('/')
   end
 

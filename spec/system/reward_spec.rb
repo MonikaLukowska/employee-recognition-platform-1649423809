@@ -5,7 +5,6 @@ RSpec.describe 'Reward management', type: :system do
   let!(:reward) { create(:reward) }
 
   before do
-    driven_by(:selenium_chrome_headless)
     login_employee(employee)
     visit root_path
   end
