@@ -108,7 +108,7 @@ RSpec.describe 'Kudo management', type: :system do
     end
 
     it 'shows number of available kudos' do
-      expect(page).to have_content('Available kudos:10')
+      expect(page).to have_content('Available kudos: 10')
     end
 
     it 'decreases number after giving new kudo' do
@@ -116,7 +116,7 @@ RSpec.describe 'Kudo management', type: :system do
       fill_in('Title', with: kudo.title)
       fill_in('Content', with: kudo.content)
       click_button('Create Kudo')
-      expect(page).to have_content('Available kudos:9')
+      expect(page).to have_content('Available kudos: 9')
     end
   end
 
