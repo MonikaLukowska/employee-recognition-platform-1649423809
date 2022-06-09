@@ -6,4 +6,8 @@ class Employee < ApplicationRecord
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
+
+  def earned_points
+    received_kudos.count
+  end
 end
