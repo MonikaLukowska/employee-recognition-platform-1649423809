@@ -5,7 +5,6 @@ RSpec.describe 'Admin company values management', type: :system do
   let!(:company_value) { create(:company_value) }
 
   before do
-    driven_by(:selenium_chrome_headless)
     login_admin(admin_user)
     visit('/admin/dashboard')
   end

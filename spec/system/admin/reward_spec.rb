@@ -5,7 +5,6 @@ RSpec.describe 'Admin rewards management', type: :system do
   let!(:reward) { create(:reward) }
 
   before do
-    driven_by(:selenium_chrome_headless)
     login_admin(admin_user)
     visit('/admin/dashboard')
   end

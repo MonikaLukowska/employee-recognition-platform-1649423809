@@ -5,7 +5,6 @@ RSpec.describe 'Admin kudos management', type: :system do
   let!(:employee) { create(:employee) }
 
   before do
-    driven_by(:selenium_chrome_headless)
     login_admin(admin_user)
     visit('/admin/dashboard')
   end

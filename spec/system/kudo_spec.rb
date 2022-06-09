@@ -6,7 +6,6 @@ RSpec.describe 'Kudo management', type: :system do
   let!(:company_value) { create(:company_value) }
 
   before do
-    driven_by(:selenium_chrome_headless)
     login_employee(employee)
     visit root_path
   end
