@@ -78,4 +78,8 @@ RSpec.configure do |config|
     driven_by :selenium_chrome_headless
   end
 
+  config.before(:each, type: :system) do
+    page.driver.browser.manage.window.resize_to(1280,800)
+  end
+
 end
