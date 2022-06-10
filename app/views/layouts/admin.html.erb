@@ -11,32 +11,28 @@
   </head>
   <body>
     <header>
-      <nav class="navbar navbar-expand-lg navbar-light bg-light w-100">
-        <div class="w-100 container">
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
           <div class="row w-100 align-items-center justify-content-between">
-            <div class="col">
-              <h1 >
-                <%= link_to 'Logo', root_path, class: 'navbar-brand' %>
-              </h1>
+            <div class="col-3">
+              <h1><%= link_to 'Logo', root_path, class: 'navbar-brand' %></h1>
             </div>
-            <div class="col" id="navbarSupportedContent">
-              <ul class="navbar-nav no-wrap flex justify-content-end">
+            <div class="col d-flex d-lg-none">
+              <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+            </div>
+            <div class="collapse navbar-collapse w-auto ms-auto" id="navbarSupportedContent">
+              <ul class="navbar-nav mb-2 ms-auto mb-lg-0">
                 <% if admin_user_signed_in?  %>
-                <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Pages
-                  </a>
-                  <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <li><%= link_to "Kudos", admin_users_kudos_path, class: 'nav-link'  %></li>
-                    <li><%= link_to "Employees", admin_users_employees_path, class: 'nav-link'  %></li>
-                    <li><%= link_to "Company values", admin_users_company_values_path, class: 'nav-link'  %></li>
-                    <li><%= link_to "Rewards", admin_users_rewards_path, class: 'nav-link'  %></li>
-                  </ul>
-                </li>
-                <li><%= link_to "Sign out", destroy_admin_user_session_path, method: :delete, class: 'btn btn-outline-primary'  %></li>
+                  <li><%= link_to "Kudos", admin_users_kudos_path, class: 'nav-link'  %></li>
+                  <li><%= link_to "Employees", admin_users_employees_path, class: 'nav-link'  %></li>
+                  <li><%= link_to "Company values", admin_users_company_values_path, class: 'nav-link'  %></li>
+                  <li><%= link_to "Rewards", admin_users_rewards_path, class: 'nav-link'  %></li>
+                  <li><%= link_to "Sign out", destroy_admin_user_session_path, method: :delete, class: 'btn btn-outline-primary'  %></li>
                 <% end %>
               </ul>
-            </div> 
+            </div>
           </div>
         </div>
       </nav>
