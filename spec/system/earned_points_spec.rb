@@ -11,13 +11,17 @@ RSpec.describe 'Earned points management', type: :system do
 
   it 'shows number of earned points in navbar' do
     within('nav.navbar') do
-      expect(page).to have_content(employee.earned_points)
+      expect(page).to have_content("Earned points: #{employee.earned_points}")
     end
   end
 
   it 'changes number of earned points after destroying kudo' do
     expect(employee.earned_points).to eq 1
     kudo.destroy
+    visit root_path
     expect(employee.earned_points).to eq 0
+    within('nav.navbar') do
+      expect(page).to have_content("Earned points: #{employee.earned_points}")
+    end
   end
 end
