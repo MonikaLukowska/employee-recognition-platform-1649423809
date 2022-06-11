@@ -10,7 +10,6 @@ RSpec.describe 'Admin rewards management', type: :system do
   end
 
   it 'can go to rewards listing page' do
-    click_link('Pages')
     click_link('Rewards')
     expect(page).to have_current_path(admin_users_rewards_path)
     expect(page).to have_content(reward.title)

@@ -12,5 +12,3 @@ import 'bootstrap'
 
 Rails.start()
 ActiveStorage.start()
-
-require("packs/scripts/dropdown_menu.js")
