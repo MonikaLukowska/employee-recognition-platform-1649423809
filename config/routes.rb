@@ -3,6 +3,7 @@
 Rails.application.routes.draw do
   resources :kudos
   resources :rewards, only: [:index, :show]
+  resources :orders, only: [:create]
 
   root to: 'kudos#index'
 
@@ -20,8 +21,6 @@ Rails.application.routes.draw do
     resources :employees, except: [:show]
     resources :company_values
     resources :rewards
-    
   end
 
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
