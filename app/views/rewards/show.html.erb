@@ -6,13 +6,11 @@
     <p class="card-text"><span class="font-weight-bold">Description: </span><%= reward.description %></p>
     <p class="card-text"><span class="font-weight-bold">Price: </span><%= reward.price %></p>
   </div>
-  <% if current_employee.earned_points >= reward.price %>
-    <%= link_to orders_path(reward: reward), :method => :post, class: 'btn btn-primary mt-2 mb-2 ms-2' do %>
-      <span class="mx-1">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#fff" viewBox="0 0 24 24"><path d="M10 21.5c0 .829-.672 1.5-1.5 1.5s-1.5-.671-1.5-1.5c0-.828.672-1.5 1.5-1.5s1.5.672 1.5 1.5zm3.5-1.5c-.828 0-1.5.671-1.5 1.5s.672 1.5 1.5 1.5 1.5-.671 1.5-1.5c0-.828-.672-1.5-1.5-1.5zm6.305-15l-3.432 12h-10.428l-3.777-9h-2.168l4.615 11h13.239l3.474-12h1.929l.743-2h-4.195zm-13.805-4c6.712 1.617 7 9 7 9h2l-4 4-4-4h2s.94-6.42-3-9z"/></svg>
-      </span>
-      <span>Buy now</span>
-    <% end %>
+  <%= button_to orders_path(reward: reward), :method => :post, disabled: current_employee.earned_points < reward.price, class: 'btn btn-primary mt-2 mb-2 ms-2' do %>
+    <span class="mx-1">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#fff" viewBox="0 0 24 24"><path d="M10 21.5c0 .829-.672 1.5-1.5 1.5s-1.5-.671-1.5-1.5c0-.828.672-1.5 1.5-1.5s1.5.672 1.5 1.5zm3.5-1.5c-.828 0-1.5.671-1.5 1.5s.672 1.5 1.5 1.5 1.5-.671 1.5-1.5c0-.828-.672-1.5-1.5-1.5zm6.305-15l-3.432 12h-10.428l-3.777-9h-2.168l4.615 11h13.239l3.474-12h1.929l.743-2h-4.195zm-13.805-4c6.712 1.617 7 9 7 9h2l-4 4-4-4h2s.94-6.42-3-9z"/></svg>
+    </span>
+    <span>Buy now</span>
   <% end %>
 </div>
 <%= link_to 'Back', rewards_path, class: 'btn btn-light mb-5' %>
