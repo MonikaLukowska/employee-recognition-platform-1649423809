@@ -3,7 +3,7 @@
 Rails.application.routes.draw do
   resources :kudos
   resources :rewards, only: [:index, :show]
-  resources :orders, only: [:create]
+  resources :orders, only: [:create, :index]
 
   root to: 'kudos#index'
 

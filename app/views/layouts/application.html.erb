@@ -26,6 +26,7 @@
                   <li><%= link_to "Sign up", new_employee_registration_path, class: 'nav-link'  %></li>
                 <% else %>
                   <li><%= link_to "Rewards", rewards_path, class: 'nav-link btn btn-link'  %></li>
+                  <li><%= link_to "Orders", orders_path, class: 'nav-link btn btn-link'  %></li>
                   <li><%= link_to "Sign out", destroy_employee_session_path, method: :delete, class: 'btn btn-success'  %></li>
                 <% end%>
               </ul>
