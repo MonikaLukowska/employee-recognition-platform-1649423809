@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe 'Buying reward management', type: :system do
   let(:employee) { create(:employee) }
   let!(:kudo) { create(:kudo, receiver: employee) }
-  let!(:reward) { create(:reward, price: 1) }
+  let!(:reward) { create(:reward) }
   let!(:expensive_reward) { create(:reward, price: 2) }
 
   before do
