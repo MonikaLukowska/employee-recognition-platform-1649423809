@@ -1,0 +1,18 @@
+<h1>Orders</h1>
+<% if orders.empty? %>
+<p>You have not placed any orders yet</p>
+<% end %>
+<ul>
+  <% orders.each do |order| %>
+    <li class="card" test_id="order_<%= order.id %>">
+      <div class="card-header">
+        Transaction date: <%= order.created_at.strftime('%d-%m-%Y') %>
+      </div>
+      <div class="card-body">
+        <p class="card-text"><span class="font-weight-bold">Reward title: </span><%= order.reward_snapshot.title %></p>
+        <p class="card-text"><span class="font-weight-bold">Reward description: </span><%= order.reward_snapshot.description %></p>
+        <p class="card-text"><span class="font-weight-bold">Reward price: </span><%= order.purchase_price %></p>
+      </div>
+    </li>
+  <% end %>
+</ul>

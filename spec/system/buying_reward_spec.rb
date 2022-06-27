@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe 'Buying reward management', type: :system do
   let(:employee) { create(:employee) }
   let!(:kudo) { create(:kudo, receiver: employee) }
-  let!(:reward) { create(:reward, price: 1) }
+  let!(:reward) { create(:reward) }
   let!(:expensive_reward) { create(:reward, price: 2) }
 
   before do
@@ -15,6 +15,7 @@ RSpec.describe 'Buying reward management', type: :system do
     expect(employee.earned_points).to eq 1
     click_button('Buy now')
     expect(page).to have_text('You have successfully bought new reward.')
+    employee.reload
     expect(employee.earned_points).to eq 0
     within('nav.navbar') do
       expect(page).to have_content("Earned points: #{employee.earned_points}")
