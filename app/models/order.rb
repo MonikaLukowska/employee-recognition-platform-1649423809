@@ -4,7 +4,7 @@ class Order < ApplicationRecord
   belongs_to :reward
   belongs_to :employee
 
-  def snapshot_price
+  def purchase_price
     reward_snapshot.price
   end
 end

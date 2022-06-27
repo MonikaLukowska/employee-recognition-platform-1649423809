@@ -10,6 +10,6 @@ class Employee < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   def earned_points
-    received_kudos.count - orders.sum(&:snapshot_price).to_i
+    received_kudos.count - orders.sum(&:purchase_price).to_i
   end
 end
