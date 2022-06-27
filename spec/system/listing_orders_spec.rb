@@ -38,13 +38,17 @@ RSpec.describe 'Listing orders management', type: :system do
 
     refresh
 
-    expect(reward.price).to eq 2
-    expect(order.reward_snapshot.price).to eq 1
+    click_on 'Rewards'
+    within("li[test_id='reward_#{reward.id}") do
+      expect(page).to have_text('Price: 2.0')
+    end
+
+    click_on 'Orders'
     within('nav.navbar') do
       expect(page).to have_content('Earned points: 0')
     end
     within("li[test_id='order_#{order.id}") do
-      expect(page).to have_text('1.0')
+      expect(page).to have_text('Reward price: 1.0')
     end
   end
 end
