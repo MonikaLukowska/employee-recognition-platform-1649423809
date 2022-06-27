@@ -1,0 +1,22 @@
+<h1 class="mb-5 text-center"><%=  employee.email%>'s orders</h1>
+<% if orders.empty? %>
+  <p>Employee has not placed any order yet</p>
+<% else %>
+  <ul class="mb-3 px-0">
+    <% orders.each do |order| %>
+      <li class="card mb-2" test_id="order_<%= order.id %>">
+        <div class="card-header">
+          Transaction date: <%= order.created_at.strftime('%d-%m-%Y') %>
+        </div>
+        <div class="card-body">
+          <p class="card-text"><span class="font-weight-bold">Reward title: </span><%= order.reward_snapshot.title %></p>
+          <p class="card-text"><span class="font-weight-bold">Reward description: </span><%= order.reward_snapshot.description %></p>
+          <p class="card-text"><span class="font-weight-bold">Reward price: </span><%= order.purchase_price %></p>
+        </div>
+      </li>
+    <% end %>
+  </ul>
+<% end %>
+ <%= link_to 'Back', admin_users_employees_path, class: 'btn btn-outline-success' %>
+
+
