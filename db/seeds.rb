@@ -7,18 +7,17 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 5.times do |i|
-  Employee.create(email: "employee#{i}@gmail.com", password: "psswd123")
+  Employee.where(email: 'employee#{i}@gmail.com').first_or_create!( password: "psswd123")
 end
 
-AdminUser.create(email:"admin@example.com", password:'password')
+AdminUser.where(email:'admin@example.com').first_or_create!(password:'password')
 
-['Honesty', 'Ownership', 'Accountability', 'Passion'].each { |val| CompanyValue.create(title: val )}
+['Honesty', 'Ownership', 'Accountability', 'Passion'].each { |val| CompanyValue.where(title: val ).first_or_create!}
 
 5.times do |i|
-  Kudo.create(title: "Kudo #{i} title", content: "Kudo content", receiver:Employee.first, giver:Employee.last, company_value: CompanyValue.sample)
+  Kudo.where(title: "Kudo #{i} title", content: "Kudo content", receiver:Employee.first, giver:Employee.last, company_value: CompanyValue.all.sample).first_or_create!
 end
 
-5.times do |i|
-  Reward.create(title: "Title #{i}", description: 'Reward description', price: i )
+1.upto(5) do |i|
+  Reward.where(title: "Title #{i}", description: 'Reward description', price: i ).first_or_create!
 end
-
