@@ -18,6 +18,6 @@ AdminUser.where(email:'admin@example.com').first_or_create!(password:'password')
   Kudo.where(title: "Kudo #{i} title", content: "Kudo content", receiver:Employee.first, giver:Employee.last, company_value: CompanyValue.all.sample).first_or_create!
 end
 
-5.times do |i|
+1.upto(5) do |i|
   Reward.where(title: "Title #{i}", description: 'Reward description', price: i ).first_or_create!
 end
