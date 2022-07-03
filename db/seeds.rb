@@ -15,7 +15,7 @@ AdminUser.where(email:"admin@example.com", password:'password').first_or_create!
 ['Honesty', 'Ownership', 'Accountability', 'Passion'].each { |val| CompanyValue.where(title: val ).first_or_create!}
 
 5.times do |i|
-  Kudo.where(title: "Kudo #{i} title", content: "Kudo content", receiver:Employee.first, giver:Employee.last, company_value: CompanyValue.sample).first_or_create!
+  Kudo.where(title: "Kudo #{i} title", content: "Kudo content", receiver:Employee.first, giver:Employee.last, company_value: CompanyValue.all.sample).first_or_create!
 end
 
 5.times do |i|
