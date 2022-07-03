@@ -12,7 +12,7 @@ RSpec.describe 'Admin kudos management', type: :system do
   it 'shows employees list' do
     click_link('Employees')
     expect(page).to have_current_path(admin_users_employees_path)
-    expect(page).to have_css("#employee_#{employee.id}")
+    expect(page).to have_css("li[test_id='employee_#{employee.id}")
   end
 
   context 'when on employess list page' do
@@ -26,7 +26,7 @@ RSpec.describe 'Admin kudos management', type: :system do
       click_button('Update Employee')
       expect(page).to have_content('Employee was successfully updated')
       expect(page).to have_current_path(admin_users_employees_path)
-      within("li#employee_#{employee.id}") do
+      within("li[test_id='employee_#{employee.id}") do
         expect(page).to have_content('Number of kudos: 9')
       end
     end
