@@ -7,10 +7,10 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 5.times do |i|
-  Employee.where(email: "employee#{i}@gmail.com", password: "psswd123").first_or_create!
+  Employee.where(email: 'employee#{i}@gmail.com').first_or_create!( password: "psswd123")
 end
 
-AdminUser.where(email:"admin@example.com", password:'password').first_or_create!
+AdminUser.where(email:'admin@example.com').first_or_create!(password:'password')
 
 ['Honesty', 'Ownership', 'Accountability', 'Passion'].each { |val| CompanyValue.where(title: val ).first_or_create!}
 
