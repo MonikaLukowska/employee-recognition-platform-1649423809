@@ -20,7 +20,7 @@ Rails.application.routes.draw do
     resources :kudos, only: [:index, :destroy]
     resources :employees, except: [:show] do
       scope module: 'employees' do
-        resources :orders, only: [:index]
+        resources :orders, only: [:index, :update]
       end
     end
     resources :company_values

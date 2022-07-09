@@ -12,4 +12,8 @@ class Employee < ApplicationRecord
   def earned_points
     received_kudos.count - orders.sum(&:purchase_price).to_i
   end
+
+  def pending_orders
+    orders.not_delivered.count
+  end
 end
