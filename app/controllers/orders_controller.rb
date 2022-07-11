@@ -1,8 +1,7 @@
 class OrdersController < ApplicationController
   before_action :authenticate_employee!
   def index
-    render :index, locals: { orders: Order.of_current_employee(current_employee).filtered_by_status(status),
-                             employee: current_employee }
+    render :index, locals: { orders: Order.where(employee: current_employee) }
   end
 
   def create
@@ -22,9 +21,5 @@ class OrdersController < ApplicationController
 
   def reward
     Reward.find(params[:reward])
-  end
-
-  def status
-    @status = params[:status]
   end
 end
