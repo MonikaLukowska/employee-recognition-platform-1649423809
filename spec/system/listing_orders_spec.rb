@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe 'Listing orders management', type: :system do
   let(:admin_user) { create(:admin_user) }
-  let!(:employee) {create(:employee)}
+  let!(:employee) { create(:employee) }
   let!(:order) { create(:order, employee: employee) }
 
   before do
