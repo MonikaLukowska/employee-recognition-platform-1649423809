@@ -2,15 +2,16 @@ require 'rails_helper'
 
 RSpec.describe 'Listing orders management', type: :system do
   let(:admin_user) { create(:admin_user) }
-  let!(:order) { create(:order) }
+  let!(:employee) {create(:employee)}
+  let!(:order) { create(:order, employee: employee) }
 
   before do
-    login_employee(order.employee)
+    login_employee(employee)
     visit orders_path
   end
 
   context 'when listing orders' do
-    let(:order_delivered) { create(:order, employee: order.employee, status: 1) }
+    let(:order_delivered) { create(:order, employee: employee, status: :delivered) }
 
     it 'shows employee\'s orders list' do
       visit orders_path
