@@ -5,8 +5,8 @@ class Order < ApplicationRecord
   belongs_to :reward
   belongs_to :employee
 
-  scope :filtered_by_status, ->(status) { where(status: status) if status.present? }
-  scope :of_current_employee, ->(employee) { where(employee: employee) }
+  scope :filtered_by_status, ->(status) { where(status: Order.statuses[status]) if status.present? }
+  scope :of_an_employee, ->(employee) { where(employee: employee) }
 
   def purchase_price
     reward_snapshot.price

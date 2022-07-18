@@ -2,7 +2,7 @@ module AdminUsers
   module Employees
     class OrdersController < AdminUsers::ApplicationController
       def index
-        render :index, locals: { orders: Order.where(employee: employee).order(:status),
+        render :index, locals: { orders: Order.of_an_employee(employee).order(:status),
                                  employee: employee }
       end
 
