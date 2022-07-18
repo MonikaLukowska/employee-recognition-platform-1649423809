@@ -4,8 +4,8 @@
 <% else  %>
   <div class="d-flex justify-content-center w-100 mb-4 gap-3">
     <%= link_to 'All orders', orders_path, class: 'btn btn-outline-dark' %>
-    <%= link_to 'Delivered', orders_path(status: 1), class: 'btn btn-outline-dark' %>
-    <%= link_to 'Not delivered', orders_path(employee, status: 0), class: 'btn btn-outline-dark' %>
+    <%= link_to 'Delivered', orders_path(status: :delivered), class: 'btn btn-outline-dark' %>
+    <%= link_to 'Not delivered', orders_path(status: :not_delivered), class: 'btn btn-outline-dark' %>
   </div>
 <% end %>
 <ul>
