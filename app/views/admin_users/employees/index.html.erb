@@ -1,23 +1,21 @@
 <h1 class="text-center mb-5">Employees list</h1>
 <ul class="px-0">
   <% employees.each do |employee| %>
-    <li class="card mt-4" test_id="employee_<%= employee.id %>">
+    <li class="card mt-3" test_id="employee_<%= employee.id %>">
       <div class="card-header">
         Employee <%= employee.id %>
       </div>
       <div class="card-body">
         <p class="card-text"><span class="font-weight-bold">Email: </span><%= employee.email %></p>
         <p class="card-text"><span class="font-weight-bold">Number of kudos: </span><%= employee.number_of_available_kudos %></p>
-        <div>
+        <div class="mb-2">
           <%= link_to admin_users_employee_orders_path(employee), class: 'btn btn-outline-success' do %>
             <span>Employee's orders</span>
             <span>(<%= employee.pending_orders %>)<span>
           <% end %>
         </div>
-        <div class="btn-group mt-3" role="group" aria-label="Basic mixed styles example">
-          <span class="btn btn-warning"><%= link_to 'Edit', edit_admin_users_employee_path(employee), class: 'btn btn-warning' %></span>
-          <span class="btn btn-danger"><%= link_to 'Remove', admin_users_employee_path(employee), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %></span>
-        </div>
+        <span class="btn btn-warning me-1"><%= link_to 'Edit', edit_admin_users_employee_path(employee), class: 'text-decoration-none text-dark' %></span> |
+        <span class="btn btn-danger ms-1"><%= link_to 'Remove', admin_users_employee_path(employee), method: :delete, data: { confirm: 'Are you sure?' }, class: 'text-decoration-none text-white' %></span>
       </div>
     </li>
   <% end %>
