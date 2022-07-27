@@ -14,6 +14,6 @@ class Employee < ApplicationRecord
   end
 
   def pending_orders
-    orders.not_delivered.count
+    orders.undelivered.count
   end
 end

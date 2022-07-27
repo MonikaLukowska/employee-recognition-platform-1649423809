@@ -7,7 +7,7 @@ module AdminUsers
       end
 
       def update
-        if order.not_delivered?
+        if order.undelivered?
           order.delivered!
           DeliveryConfirmationMailer.order_delivery_confirmation_email(order).deliver_now
           redirect_back fallback_location: admin_users_employee_orders_path,
