@@ -1,7 +1,7 @@
-<h1>Kudos</h1>
-<ul>
+<h1 class="mb-5 text-center" >Kudos</h1>
+<ul class="px-0">
   <% kudos.each do |kudo| %>
-    <li class="card" id="kudo_<%= kudo.id %>">
+    <li class="card mb-3" id="kudo_<%= kudo.id %>">
       <div class="card-header">
         Kudo for <%= kudo.receiver.email %>
       </div>
@@ -19,4 +19,4 @@
     </li>
   <% end %>
 </ul>
-<%= link_to 'New Kudo', new_kudo_path, class: 'btn btn-primary' %>
+<%= link_to 'New Kudo', new_kudo_path, class: 'btn btn-primary mb-5 mt-3' %>

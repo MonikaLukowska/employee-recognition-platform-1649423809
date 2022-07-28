@@ -1,4 +1,4 @@
-<h1 class="mb-5">Rewards</h1>
+<h1 class="mb-5 text-center">Rewards</h1>
 <ul class="px-0">
   <% rewards.each do |reward| %>
     <li class="card mb-2" test_id="reward_<%= reward.id %>">
@@ -9,10 +9,10 @@
         <p class="card-text"><span class="font-weight-bold">Title: </span><%= reward.title %></p>
         <p class="card-text"><span class="font-weight-bold">Description: </span><%= reward.description %></p>
         <p class="card-text"><span class="font-weight-bold">Price: </span><%= reward.price %></p>
-        <td><%= link_to 'Edit', edit_admin_users_reward_path(reward), class: 'btn btn-warning' %></td>
-        <td><%= link_to 'Remove', admin_users_reward_path(reward), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %></td>
+        <span><%= link_to 'Edit', edit_admin_users_reward_path(reward), class: 'text-dark text-decoration-none' %></span> |
+        <span><%= link_to 'Remove', admin_users_reward_path(reward), method: :delete, data: { confirm: 'Are you sure?' }, class: 'text-white text-decoration-none' %></span>
       </div>
     </li>
   <% end %>
 </ul>
-<%= link_to 'New Reward', new_admin_users_reward_path(rewards), class: 'btn btn-primary mb-5 mt-5' %>
+<%= link_to 'New Reward', new_admin_users_reward_path(rewards), class: 'btn btn-primary mb-5 mt-3' %>

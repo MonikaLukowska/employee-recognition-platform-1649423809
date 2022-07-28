@@ -1,7 +1,7 @@
 class OrdersController < ApplicationController
   before_action :authenticate_employee!
   def index
-    render :index, locals: { orders: Order.of_an_employee(current_employee).filtered_by_status(status) }
+    render :index, locals: { orders: Order.of_an_employee(current_employee).filtered_by_status(status), status: status }
   end
 
   def create

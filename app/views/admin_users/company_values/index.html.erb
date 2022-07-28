@@ -1,4 +1,4 @@
-<h1 class="mb-5">Company values</h1>
+<h1 class="mb-5 text-center">Company values</h1>
 <ul class="px-0">
   <% company_values.each do |company_value| %>
     <li class="card mb-2" id="company_value_<%= company_value.id %>">
@@ -7,10 +7,10 @@
       </div>
       <div class="card-body">
         <p class="card-text"><span class="font-weight-bold">Title: </span><%= company_value.title %></p>
-        <td><%= link_to 'Edit', edit_admin_users_company_value_path(company_value), class: 'btn btn-warning' %></td>
-        <td><%= link_to 'Remove', admin_users_company_value_path(company_value), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %></td>
+        <span class='btn btn-warning me-1'><%= link_to 'Edit', edit_admin_users_company_value_path(company_value), class: 'text-dark text-decoration-none' %></span> |
+        <span class='btn btn-danger ms-1'><%= link_to 'Remove', admin_users_company_value_path(company_value), method: :delete, data: { confirm: 'Are you sure?' }, class: 'text-white text-decoration-none' %></span>
       </div>
     </li>
   <% end %>
 </ul>
-<%= link_to 'New Company value', new_admin_users_company_value_path(company_values), class: 'btn btn-primary mb-5 mt-5' %>
+<%= link_to 'New Company value', new_admin_users_company_value_path(company_values), class: 'btn btn-primary mb-5 mt-3' %>
