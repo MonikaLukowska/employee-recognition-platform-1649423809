@@ -31,8 +31,8 @@ module AdminUsers
       number_of_kudos = params[:number_of_kudos].to_i
       if number_of_kudos.between?(1, 20)
         Employee.transaction do
-          Employee.all.each do |e|
-            e.increment(:number_of_available_kudos, number_of_kudos).save!
+          Employee.all.each do |employee|
+            employee.increment(:number_of_available_kudos, number_of_kudos).save!
           end
           redirect_to admin_users_employees_path, notice: 'Numbers of available kudos where increased succesfully'
         rescue StandardError => e
