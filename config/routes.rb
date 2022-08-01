@@ -22,9 +22,12 @@ Rails.application.routes.draw do
       scope module: 'employees' do
         resources :orders, only: [:index, :update]
       end
+      collection do
+        get 'add_kudos'
+        patch 'increase_number_of_available_kudos'
+      end
     end
     resources :company_values
     resources :rewards
   end
-
 end
