@@ -1,7 +1,7 @@
 class KudosController < ApplicationController
   before_action :authenticate_employee!
   def index
-    render :index, locals: { kudos: Kudo.includes(:receiver, :giver, :company_value) }
+    render :index, locals: { kudos: Kudo.includes(:receiver, :giver, :company_value).order(created_at: :desc) }
   end
 
   def show
@@ -29,6 +29,8 @@ class KudosController < ApplicationController
   end
 
   def update
+    authorize kudo
+
     if kudo.update(kudo_params)
       redirect_to kudo, notice: 'Kudo was successfully updated.'
     else
@@ -37,7 +39,8 @@ class KudosController < ApplicationController
   end
 
   def destroy
-    require_same_giver
+    authorize kudo
+
     kudo.destroy
     increase_giver_available_kudos
     redirect_to kudos_path, notice: 'Kudo was successfully destroyed.'
@@ -51,13 +54,6 @@ class KudosController < ApplicationController
 
   def kudo_params
     params.require(:kudo).permit(:id, :title, :content, :receiver_id, :giver_id, :company_value_id)
-  end
-
-  def require_same_giver
-    return unless current_employee != kudo.giver
-
-    flash[:alert] = 'You can only edit and delete your own kudos'
-    redirect_to kudos_path
   end
 
   def decrease_giver_available_kudos
