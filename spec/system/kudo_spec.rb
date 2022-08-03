@@ -63,6 +63,7 @@ RSpec.describe 'Kudo management', type: :system do
     end
 
     it 'enables to edit the kudo' do
+      expect(page).not_to have_link('Edit', class: 'disabled')
       click_link('Edit')
       fill_in('Title', with: 'Edited title')
       click_button('Update Kudo')
@@ -71,12 +72,24 @@ RSpec.describe 'Kudo management', type: :system do
     end
 
     it 'enables to destroy the kudo' do
-      visit('/kudos')
+      expect(page).not_to have_link('Destroy', class: 'disabled')
       click_link('Destroy')
       page.accept_alert
       expect(page).to have_current_path(kudos_path)
       expect(page).to have_text('Kudo was successfully destroyed')
       expect(Kudo.count).to eq 0
+    end
+
+    it 'prevents from removing kudo created more than 5 minutes ago' do
+      travel 6.minutes
+      page.refresh
+      expect(page).to have_link('Destroy', class: 'disabled')
+    end
+
+    it 'prevents from editing kudo created more than 5 minutes ago' do
+      travel 6.minutes
+      visit('/kudos')
+      expect(page).to have_link('Edit', class: 'disabled')
     end
   end
 
@@ -89,13 +102,13 @@ RSpec.describe 'Kudo management', type: :system do
 
     it 'prevents from editing' do
       within("li#kudo_#{kudo.id}") do
-        expect(page).to have_no_link('Edit')
+        expect(page).to have_link('Edit', class: 'disabled')
       end
     end
 
     it 'prevents from destoying' do
       within("li#kudo_#{kudo.id}") do
-        expect(page).to have_no_link('Destroy')
+        expect(page).to have_link('Destroy', class: 'disabled')
       end
     end
   end
