@@ -1,7 +1,8 @@
 class RewardsController < ApplicationController
   before_action :authenticate_employee!
   def index
-    render :index, locals: { rewards: Reward.order(created_at: :desc) }
+    pagy, rewards = pagy(Reward.order(created_at: :desc), items: 3)
+    render :index, locals: { rewards: rewards, pagy: pagy }
   end
 
   def show
