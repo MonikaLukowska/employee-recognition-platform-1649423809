@@ -11,8 +11,8 @@
         <p class="card-text"><span class="font-weight-bold">Company Value: </span><%= kudo.company_value.title %></p>
         <p class="card-text"><span class="font-weight-bold">Receiver: </span><%= kudo.receiver.email %></p>
         <p class="card-text"><span class="font-weight-bold">Giver: </span><%= kudo.giver.email %></p>
-        <%= link_to 'Edit', edit_kudo_path(kudo), class: "btn btn-warning me-1 #{disabled?(kudo)}"%> |
-        <%= link_to 'Destroy', kudo, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger ms-1 #{disabled?(kudo)}" %>
+        <%= link_to 'Edit', edit_kudo_path(kudo), class: class_names("btn", "btn-warning", "ms-1", { disabled: !policy(kudo).update? })%> |
+        <%= link_to 'Destroy', kudo, method: :delete, data: { confirm: 'Are you sure?' }, class: class_names("btn", "btn-danger", "ms-1", { disabled: !policy(kudo).destroy? }) %>
       </div>
     </li>
   <% end %>
