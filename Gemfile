@@ -23,6 +23,8 @@ gem 'devise'
 gem 'net-imap', require: false
 gem 'net-pop', require: false
 gem 'net-smtp', require: false
+# pagination
+gem 'pagy', '~> 5.10'
 
 group :development, :test do
   # Debugging tool
