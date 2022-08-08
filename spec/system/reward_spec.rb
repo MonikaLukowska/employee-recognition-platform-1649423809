@@ -39,22 +39,27 @@ RSpec.describe 'Reward management', type: :system do
 
   context 'when there are more than 3 rewards' do
     it 'shows 3 rewards per page only' do
-      rewards = create_list(:reward, 3)
+      reward2 = create(:reward)
+      reward3 = create(:reward)
+      reward4 = create(:reward)
       visit rewards_path
 
-      expect(page).to have_content(rewards.last.title)
-      expect(page).to have_content(rewards.first.title)
-      expect(page).to have_content(rewards[1].title)
+      expect(page).to have_content(reward4.title)
+      expect(page).to have_content(reward3.title)
+      expect(page).to have_content(reward2.title)
       expect(page).not_to have_content(reward.title)
       within('nav.pagy-bootstrap-nav') do
         expect(page).to have_link('2')
       end
 
       click_link('2')
-      expect(page).to have_current_path('/rewards?page=2')
       expect(page).to have_content(reward.title)
+      expect(page).not_to have_content(reward2.title)
       click_link('1')
-      expect(page).to have_current_path('/rewards?page=1')
+      expect(page).to have_content(reward4.title)
+      expect(page).to have_content(reward3.title)
+      expect(page).to have_content(reward2.title)
+      expect(page).not_to have_content(reward.title)
     end
   end
 end
