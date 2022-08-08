@@ -20,6 +20,8 @@
     </li>
   <% end %>
 </ul>
-<div class="d-flex justify-content-center"> 
-  <%== pagy_bootstrap_nav(pagy) %>
-</div>
+<ul class="pagination d-flex justify-content-center"> 
+<% (1..pagination_result).each do |page| %>
+  <li class="page-item <%= page == current_page ? 'active' : ''%>"><%= link_to  page , rewards_path(page: page), class: 'page-link'%></li>
+<% end %>
+</ul>
