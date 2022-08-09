@@ -1,0 +1,15 @@
+<h1 class="mb-5 text-center">Categories</h1>
+<ul class="px-0">
+  <% categories.each do |category| %>
+    <li class="card mb-2" test_id="category_<%= category.id %>">
+      <div class="card-header">
+        Category: <%= category.title %>
+      </div>
+      <div class="card-body">
+        <span><%= link_to 'Edit', edit_admin_users_category_path(category), class: 'btn btn-warning' %></span> |
+        <span><%= link_to 'Remove', admin_users_category_path(category), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %></span>
+      </div>
+    </li>
+  <% end %>
+</ul>
+<%= link_to 'New category', new_admin_users_category_path(categories), class: 'btn btn-primary mb-5 mt-3' %>
