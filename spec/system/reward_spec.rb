@@ -52,10 +52,17 @@ RSpec.describe 'Reward management', type: :system do
         expect(page).to have_link('2')
       end
 
-      click_link('2')
+      within('nav.pagy-bootstrap-nav') do
+        click_link('2')
+      end
+
       expect(page).to have_content(reward.title)
       expect(page).not_to have_content(reward2.title)
-      click_link('1')
+
+      within('nav.pagy-bootstrap-nav') do
+        click_link('1')
+      end
+
       expect(page).to have_content(reward4.title)
       expect(page).to have_content(reward3.title)
       expect(page).to have_content(reward2.title)
