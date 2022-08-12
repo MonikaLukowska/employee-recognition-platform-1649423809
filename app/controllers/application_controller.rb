@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
   private
 
   def employee_not_authorized
-    redirect_to kudos_path, alert: 'You cannot edit/remove this kudo'
+    redirect_to kudos_path, alert: 'You are not authorized to perform this action'
   end
 
   def pundit_user
