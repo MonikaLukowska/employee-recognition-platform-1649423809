@@ -1,0 +1,11 @@
+<div class="container mt-4">
+<div class="row justify-content-center">
+    <div class="col-8 mt-4 mb-4">
+    <% flash.each do |name, msg| %>
+     <div class="alert alert-<%= name == "notice" ? "success" : "danger" %>" role="alert">
+        <%= msg %>
+    </div>
+  <% end %>
+  </div>
+  </div>
+</div>

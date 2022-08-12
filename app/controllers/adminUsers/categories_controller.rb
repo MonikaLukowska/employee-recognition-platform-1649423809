@@ -35,7 +35,7 @@ module AdminUsers
         redirect_to admin_users_categories_path, notice: 'Category was successfully destroyed.'
       else
         redirect_back fallback_location: admin_users_categories_path,
-                      notice: 'This category has related rewards and cannot be destroyed'
+                      alert: 'This category has related rewards and cannot be destroyed'
       end
     end
 
