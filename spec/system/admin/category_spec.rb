@@ -95,16 +95,9 @@ RSpec.describe 'Admin categories management', type: :system do
     it 'prevents form removing category assigned to the reward' do
       reward.update(category: category)
       click_link('Categories')
-      click_link('Remove')
-      page.accept_alert
-      within('p.notice') do
-        expect(page).to have_content('This category has related rewards and cannot be destroyed')
-      end
-      expect(page).to have_current_path(admin_users_categories_path)
       within("li[test_id='category_#{category.id}']") do
-        expect(page).to have_content(category.title)
+        expect(page).to have_link('Remove', class: 'disabled')
       end
-      expect(Category.count).to eq 1
     end
   end
 end
