@@ -20,7 +20,7 @@ RSpec.describe 'Admin categories management', type: :system do
       click_link('New category')
       fill_in('Title', with: new_category.title)
       click_button('Create Category')
-      within('p.notice') do
+      within('div.alert') do
         expect(page).to have_content('Category was successfully created')
       end
       expect(page).to have_content(new_category.title)
@@ -50,7 +50,7 @@ RSpec.describe 'Admin categories management', type: :system do
       click_link('Edit')
       fill_in('Title', with: new_category.title)
       click_button('Update Category')
-      within('p.notice') do
+      within('div.alert') do
         expect(page).to have_content('Category was successfully updated')
       end
       expect(page).to have_current_path(admin_users_categories_path)

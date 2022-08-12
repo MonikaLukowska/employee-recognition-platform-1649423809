@@ -39,7 +39,7 @@ module AdminUsers
         redirect_to admin_users_company_values_path, notice: 'Company value was successfully destroyed.'
       else
         redirect_to admin_users_company_values_path,
-                    notice: 'Company value has associated kudo and cannot be destroyed.'
+                    alert: 'Company value has associated kudo and cannot be destroyed.'
       end
     end
 

@@ -6,13 +6,13 @@ class OrdersController < ApplicationController
 
   def create
     if current_employee.earned_points < reward.price
-      redirect_to rewards_path, notice: 'You do not have enough points to buy this reward.'
+      redirect_to rewards_path, alert: 'You do not have enough points to buy this reward.'
     else
       order = Order.new(employee: current_employee, reward: reward, reward_snapshot: reward)
       if order.save
         redirect_to rewards_path, notice: 'You have successfully bought new reward.'
       else
-        redirect_to rewards_path, notice: 'Something went wrong.'
+        redirect_to rewards_path, alert: 'Something went wrong.'
       end
     end
   end

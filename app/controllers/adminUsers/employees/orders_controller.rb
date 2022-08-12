@@ -14,7 +14,7 @@ module AdminUsers
                         notice: 'Order has been delivered!'
         else
           redirect_back fallback_location: admin_users_employee_orders_path,
-                        notice: 'Order has been already delivered!'
+                        alert: 'Order has been already delivered!'
         end
       end
 
