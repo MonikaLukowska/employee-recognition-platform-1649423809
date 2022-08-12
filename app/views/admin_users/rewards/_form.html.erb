@@ -9,6 +9,10 @@
       </ul>
     </div>
   <% end %>
+  <div class="field mb-3" >
+    <%= form.label :category %>
+    <%= form.collection_select :category_id, Category.all.order(:title), :id, :title, { include_blank: 'No category' }, { class: "form-select" }  %>
+  </div>
   <div class="field mb-3">
     <%= form.label :title %>
     <%= form.text_field :title, class: 'form-control' %>

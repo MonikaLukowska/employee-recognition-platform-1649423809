@@ -1,7 +1,7 @@
 module AdminUsers
   class RewardsController < AdminUsers::ApplicationController
     def index
-      render :index, locals: { rewards: Reward.order(created_at: :desc) }
+      render :index, locals: { rewards: Reward.order(created_at: :desc).includes(:category) }
     end
 
     def edit
@@ -46,7 +46,7 @@ module AdminUsers
     end
 
     def reward_params
-      params.require(:reward).permit(:id, :title, :description, :price)
+      params.require(:reward).permit(:id, :title, :description, :price, :category_id)
     end
   end
 end
