@@ -35,8 +35,9 @@ module AdminUsers
     end
 
     def destroy
-      reward.destroy
-      redirect_to admin_users_rewards_path, notice: 'Reward was successfully destroyed.'
+      if reward.destroy
+        redirect_to admin_users_rewards_path, notice: 'Reward was successfully destroyed.'
+      end
     end
 
     private
