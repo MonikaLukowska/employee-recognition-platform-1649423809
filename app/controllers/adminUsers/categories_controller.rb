@@ -1,7 +1,7 @@
 module AdminUsers
   class CategoriesController < AdminUsers::ApplicationController
     def index
-      render :index, locals: { categories: Category.order(title: :asc) }
+      render :index, locals: { categories: Category.order(title: :asc).includes(:rewards) }
     end
 
     def edit
