@@ -3,7 +3,9 @@ class RewardsController < ApplicationController
   def index
     filtred_rewards = RewardsQuery.new(category: category_params).results
     pagy, rewards = pagy(filtred_rewards, items: 3)
-    render :index, locals: { rewards: rewards, pagy: pagy, categories: Category.order(title: :asc), category: category_params }
+    render :index, locals: { rewards: rewards, pagy: pagy,
+                             categories: Category.order(title: :asc),
+                             category: category_params }
   end
 
   def show
