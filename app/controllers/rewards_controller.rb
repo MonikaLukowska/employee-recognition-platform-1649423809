@@ -1,9 +1,9 @@
 class RewardsController < ApplicationController
   before_action :authenticate_employee!
   def index
-    pagy, rewards = pagy(FilterRewards.new(Reward.order(created_at: :desc)
-                                                 .includes(:category)).call(category), items: 3)
-    render :index, locals: { rewards: rewards, pagy: pagy, categories: Category.order(title: :asc), category: category }
+    filtred_rewards = RewardsQuery.new(category: category_params).results
+    pagy, rewards = pagy(filtred_rewards, items: 3)
+    render :index, locals: { rewards: rewards, pagy: pagy, categories: Category.order(title: :asc), category: category_params }
   end
 
   def show
@@ -16,7 +16,7 @@ class RewardsController < ApplicationController
     @reward ||= Reward.find(params[:id])
   end
 
-  def category
+  def category_params
     @category = params[:category]
   end
 end
