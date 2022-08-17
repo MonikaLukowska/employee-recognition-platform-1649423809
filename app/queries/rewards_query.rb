@@ -15,7 +15,7 @@ class RewardsQuery
   attr_reader :params
 
   def prepare_collection
-    @results = Reward.all.order(created_at: :desc).includes(:category)
+    @results = Reward.order(created_at: :desc).includes(:category).with_attached_photo
   end
 
   def filter_by_category

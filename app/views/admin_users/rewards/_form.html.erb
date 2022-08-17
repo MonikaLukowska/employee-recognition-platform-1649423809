@@ -25,6 +25,10 @@
     <%= form.label :price %>
     <%= form.number_field :price, step: 0.01, class: 'form-control' %>
   </div>
+  <div class="field mb-3">
+    <%= form.label :photo %>
+    <%= form.file_field :photo, direct_upload: true, accept: 'image/jpg, image/png' %>
+  </div>
   <div class="actions">
     <%= form.submit  class: 'btn btn-primary mt-2 mb-2' %>
   </div>
