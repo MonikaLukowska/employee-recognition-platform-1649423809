@@ -1,4 +1,14 @@
 <h1 class="mb-5 text-center">Rewards</h1>
+<ul class="mb-3 d-flex justify-content-center">
+  <li class="d-block <%= category.present? ? '' : 'bg-warning' %>">
+    <%= link_to 'All', rewards_path(category: nil), class: "text-decoration-none text-dark btn btn-link" %>
+  </li>
+  <% categories.each do |cat| %>
+    <li class="d-block <%= category == cat.title ? 'bg-warning' : '' %>">
+      <%= link_to cat.title, rewards_path(category: cat.title), class: "text-decoration-none text-dark btn btn-link" %>
+    </li>
+  <% end %>
+</ul>
 <ul class="px-0 mb-2 mt-3">
   <% rewards.each do |reward| %>
     <li class="card mb-3" test_id="reward_<%= reward.id %>">
@@ -7,6 +17,7 @@
       </div>
       <div class="card-body">
         <p class="card-text"><span class="font-weight-bold">Price: </span><%= reward.price %></p>
+        <p class="card-text"><span class="font-weight-bold">Category: </span><%= reward.category ? reward.category.title : 'No category' %></p>
         <div class="d-flex align-items-center">
           <%= link_to 'Show', reward_path(reward), class: 'btn btn-warning me-2' %> |
           <%= button_to orders_path(reward: reward), :method => :post, disabled: current_employee.earned_points < reward.price, class: 'btn btn-primary mt-2 mb-2 ms-2' do %>
