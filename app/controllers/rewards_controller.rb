@@ -1,7 +1,7 @@
 class RewardsController < ApplicationController
   before_action :authenticate_employee!
   def index
-    filtred_rewards = RewardsQuery.new(category: category_params).results
+    filtred_rewards = RewardsQuery.new(params).results
     pagy, rewards = pagy(filtred_rewards, items: 3)
     render :index, locals: { rewards: rewards, pagy: pagy,
                              categories: Category.order(title: :asc),
