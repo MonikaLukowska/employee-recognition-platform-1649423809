@@ -5,11 +5,11 @@ class Reward < ApplicationRecord
 
   validates :title, :description, :price, presence: true
   validates :price, numericality: { greater_than_or_equal_to: 1 }
-  validate :correct_image_type
+  validate :correct_photo_type
 
   private
 
-  def correct_image_type
+  def correct_photo_type
     return unless photo.attached? && !photo.content_type.in?(%w[image/png image/jpg image/jpeg])
 
     errors.add(:photo, 'Must be a png or jpg type')
