@@ -16,10 +16,11 @@ RSpec.describe 'Export orders to csv', type: :system do
 
     csv = CSV.parse(page.body)
 
-    headers = %w[Date Email Title Description Price Status]
+    headers = %w[Created Updated Email Title Description Price Status]
 
     expect(csv).to have_content(headers)
     expect(csv).to have_content(order.created_at.strftime('%d-%m-%Y'))
+    expect(csv).to have_content(order.updated_at.strftime('%d-%m-%Y'))
     expect(csv).to have_content(order.employee.email)
     expect(csv).to have_content(order.reward_snapshot.title)
     expect(csv).to have_content(order.reward_snapshot.description)

@@ -1,7 +1,8 @@
-<% headers = %w[Date Email Title Description Price Status] %>
+<% headers = %w[Created Updated Email Title Description Price Status] %>
 <%= CSV.generate_line headers %>
 <% @orders.each do |order| %>
   <%= CSV.generate_line([order.created_at.strftime("%d-%m-%Y"),
+                         order.updated_at.strftime("%d-%m-%Y"),
                          order.employee.email,
                          order.reward_snapshot.title,
                          order.reward_snapshot.description,
