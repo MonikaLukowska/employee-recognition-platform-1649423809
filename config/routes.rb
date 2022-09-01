@@ -30,5 +30,6 @@ Rails.application.routes.draw do
     resources :company_values
     resources :rewards
     resources :categories, except: [:show]
+    get 'orders/export', to: 'orders#export'
   end
 end
