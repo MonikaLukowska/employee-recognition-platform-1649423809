@@ -28,7 +28,12 @@ Rails.application.routes.draw do
       end
     end
     resources :company_values
-    resources :rewards
+    resources :rewards do
+      collection do
+        get 'upload_csv'
+        post 'import_rewards'
+      end
+    end
     resources :categories, except: [:show]
     get 'orders/export', to: 'orders#export'
   end

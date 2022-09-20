@@ -1,3 +1,4 @@
+require 'csv'
 module AdminUsers
   class RewardsController < AdminUsers::ApplicationController
     def index
@@ -41,6 +42,22 @@ module AdminUsers
       end
 
       redirect_to admin_users_rewards_path, notice: 'Reward was successfully destroyed.'
+    end
+
+    def upload_csv
+      render :upload_csv
+    end
+
+    def import_rewards
+      rewards_importer = RewardsImporter.new(params[:file])
+
+      unless rewards_importer.import
+        redirect_back fallback_location: upload_csv_admin_users_rewards_path,
+                      alert: rewards_importer.errors.join(' / ')
+        return
+      end
+
+      redirect_to admin_users_rewards_path, notice: 'Rewards imported successfully'
     end
 
     private
