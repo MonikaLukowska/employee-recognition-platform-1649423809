@@ -1,0 +1,15 @@
+<div class="d-sm-flex">
+  <div class="col-md-6">
+   <h2 class="text-center mb-5">Import rewards</h2>
+    <%= form_with url: import_rewards_admin_users_rewards_path, method: :post do |form| %>
+      <div class="field">
+        <%= form.label :file %><br>
+        <%= form.file_field :file, class: 'form-control-file', required: true, accept: 'csv' %>
+      </div>
+      <div class="actions">
+        <%= form.submit 'Import rewards', class: 'btn btn-primary mt-2 mb-2' %>
+      </div>
+      <%= link_to "Back", admin_users_rewards_path, class: 'btn btn-light mb-5' %>
+    <% end %>
+  </div>
+</div>
