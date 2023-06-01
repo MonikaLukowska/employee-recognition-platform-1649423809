@@ -7,15 +7,17 @@ class RewardsImporter
   end
 
   def import
-    return false unless file_present? && valid_format? && valid_category? && titles_unique?
+    return false unless file_present? && valid_format? && titles_unique?
 
     Reward.transaction do
       CSV.foreach(@file.path, headers: true) do |row|
         reward_hash = row.to_hash
+        return false unless category(reward_hash['Category'])
+
         reward = Reward.find_or_initialize_by(title: reward_hash['Title'])
         reward.description = reward_hash['Description']
         reward.price = reward_hash['Price'].to_f
-        reward.category = Category.find_by(title: reward_hash['Category'])
+        reward.category = category(reward_hash['Category'])
         reward.save!
       end
     rescue CSV::MalformedCSVError, ActiveRecord::RecordInvalid => e
@@ -41,17 +43,18 @@ class RewardsImporter
     false
   end
 
-  def valid_category?
-    CSV.read(@file.path, headers: true)['Category'].each do |cat|
-      unless Category.find_by(title: cat)
-        @errors.push("Category  '#{cat}' does not exist")
-        false
-      end
-    end
+  def csv_body
+    @csv_body ||= CSV.read(@file.path, headers: true)
+  end
+
+  def category(title)
+    cat = Category.find_by(title: title)
+    @errors.push("Category  '#{title}' does not exist") unless cat
+    cat
   end
 
   def titles_unique?
-    titles = CSV.read(@file.path, headers: true)['Title']
+    titles = csv_body['Title']
     duplicates = titles.select { |title| titles.count(title) > 1 }
     return true if duplicates.empty?
 

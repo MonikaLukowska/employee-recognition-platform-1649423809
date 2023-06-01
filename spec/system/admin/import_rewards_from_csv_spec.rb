@@ -25,13 +25,25 @@ RSpec.describe 'Import rewards from csv', type: :system do
       end
     end
 
-    it 'aborts import when titles are not unique or category does not exist' do
+    it 'aborts import when titles are not unique' do
       click_link 'Import Rewards'
-      attach_file(File.absolute_path('./spec/fixtures/title-cat-err.csv'))
+      attach_file(File.absolute_path('./spec/fixtures/title_err.csv'))
       click_button 'Import rewards'
       within('div.alert') do
         expect(page).to have_content(
-          "Category 'Category 4' does not exist / Duplicated titles detected: Title 1,Title 1"
+          'Duplicated titles detected: Title 1,Title 1'
+        )
+      end
+      expect(page).not_to have_content('Title: New Reward')
+    end
+
+    it 'aborts import when category does not exist' do
+      click_link 'Import Rewards'
+      attach_file(File.absolute_path('./spec/fixtures/cat_err.csv'))
+      click_button 'Import rewards'
+      within('div.alert') do
+        expect(page).to have_content(
+          "Category 'Category 4' does not exist"
         )
       end
       expect(page).not_to have_content('Title: New Reward')
